@@ -2,13 +2,13 @@
 import mysql.connector
 import pandas as pd
 #establishing the connection
-connection = mysql.connector.connect(user='root', password='Rohan@19',port=3306, database='poc')
+connection = mysql.connector.connect(user='root', password='Rohan@19',port=3306, database='clvpracties')
 
 #Creating a cursor object using the cursor() method
 cursor = connection.cursor()
 
 #Executing an MYSQL function using the execute() method
-cursor.execute("""DESC Student""")
+cursor.execute("""DESC employee""")
 
 data = cursor.fetchall()
 for i in data:
@@ -23,7 +23,7 @@ print(columns)
 #Executing an MYSQL function using the execute() method
 
 cursor = connection.cursor()
-cursor.execute("select * from Student")
+cursor.execute("select * from employee")
 data = cursor.fetchall()
 for i in data:
     print(i)

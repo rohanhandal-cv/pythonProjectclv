@@ -10,12 +10,11 @@ print(df)
 dataf1 = [tuple(i) for i in df.values ]
 print(dataf1)
 
-sql='''CREATE TABLE Student (Empid int,Name varchar(20),Dept varchar(20),Salary int,Date_time datetime,Unique_id varchar(200))'''
-sql1="show tables"
-with mysql.connector.connect(user='root', password='Rohan@19', port=3306, database='poc') as conn:
+with mysql.connector.connect(user='root', password='Rohan@19', port=3306, database='clvpracties') as conn:
     with conn.cursor() as cursor:
-        cursor.execute(sql1)
+        cursor.execute("drop table if exists Student")
+        cursor.execute("CREATE TABLE Student (Empid int,Name varchar(20),Dept varchar(20),Salary int,Date_time datetime,Unique_id varchar(200))")
         for i in dataf1:
-            cursor.execute("insert into student values(?,?,?,?,?,?)",i)
-
+            cursor.execute("insert into student values(%s,%s,%s,%s,%s,%s)", i)
+    conn.commit()
 
